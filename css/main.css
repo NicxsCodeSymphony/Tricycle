@@ -1,0 +1,159 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+   background-color: #f0f0f0;
+   color: #fff;
+  height: 100%;
+   background: #0a1511;
+   min-width: 100vw;
+   padding: 0 20px;
+}
+
+header{
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+header i{
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+header i:last-child{
+  text-align: right;
+}
+
+.section1{
+  border-bottom: 1px #3a4039 solid;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.section1 p{
+    color: #3a4039;
+}
+
+.stand{
+  font-size: 2rem;
+}
+
+.section2{
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  gap: 50px;
+}
+
+.section2 > div{
+  border-bottom: 1px #3a4039 solid;
+  padding-bottom: 10px;
+}
+
+.section2 p{
+  color: #515346;
+}
+
+.section2 h2{
+  margin:4px 0;
+  font-size: 1.8rem;
+}
+
+.section2 span{
+  color: #3a4039;
+  font-size: 0.8rem;
+}
+
+.section2 .right{
+  text-align: right;
+}
+
+.section3{
+  border: 1px #3a4039 solid;
+  margin-top: 20px;
+  height: 12vh;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.container{
+  display:flex;
+  height: 100%;
+  width: 100%;
+}
+
+.container > div{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container .left{
+  border-right: #3a4039 solid 1px;
+  padding: 5px 15px;
+}
+
+.container .left:last-child{
+  border-right: none;
+}
+
+.container .right p{
+  font-size: 1rem;
+}
+
+.container p{
+  margin-bottom: 5px;
+  color: #3a4039;
+  font-size: 0.8rem;
+}
+
+.container h4{
+  font-size: 1.4rem;
+}
+
+h1,h2,h3,h4{
+  font-weight: 100;
+}
+
+.number-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.number{
+  font-size: 1.3rem;
+}
+
+.button{
+  background: transparent;
+  border-radius: 50%;
+  border: 1px #3a4039 solid;
+  width: 25px;
+  color: #fff;
+  height: 25px;
+  text-align: center;
+}
+
+input[type="button"]{
+  width: 100%;
+  height: 8vh;
+  background: #ff7b54;
+  margin-top: 60px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 900;
+}
