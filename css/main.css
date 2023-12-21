@@ -22,7 +22,6 @@ header{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
 }
 
 header i{
@@ -70,7 +69,7 @@ header i:last-child{
 
 .section2 span{
   color: #3a4039;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 .section2 .right{
