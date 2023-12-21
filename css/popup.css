@@ -21,6 +21,13 @@
   cursor: pointer;
 }
 
+.popup input[type="date"]{
+  height: 50px;
+  width: 80%;
+  text-align: center;
+  margin-left: 10%;
+}
+
 .popup p{
   font-size: 1.3rem;
   color: #000;
@@ -49,13 +56,13 @@
 }
 
 .to-wrappers input{
-  height: 50px;
+  height: 43px;
   width: 100%;
   margin-top: 5px;
   border: none;
   border-bottom: 1px #3a4039 solid;
-  padding-bottom: 5px;
-  font-size: 1.6rem;
+  padding: 0 0 5px 5px;
+  font-size: 1.4rem;
 }
 
 .to-wrappers h5{
@@ -71,16 +78,23 @@
 .to-wrappers .place{
   border: 1px #3a4039 solid;
   width: 100%;
-  height: 70px;
+  height: 65px;
   border-radius: 20px;
   margin: 20px 0;
   padding-left: 10px;
 }
 
 .to-wrappers .place p{
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  margin-top: 12px;
 }
 
 .to-wrappers .place span{
   color: #3a4039;
+  opacity: 0.6;
+  font-size: 0.7rem;
+}
+
+.to-wrappers .place:hover{
+  background-color: #ff7b54
 }
