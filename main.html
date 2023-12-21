@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE >
 <html lang="en" dir="ltr">
 
 <head>
@@ -32,7 +32,7 @@
     <div class="right to" onclick="showTo('to')">
       <p>To</p>
       <h2>BOGO</h2>
-      <span>Bungtod, Bogo City</span>
+      <span class="toPlace">Bungtod, Bogo City</span>
     </div>
   </div>
 
@@ -40,12 +40,12 @@
     <div class="container">
       <div class="left departure" onclick="showCalendar('departure')">
         <p>Departure</p>
-        <h4 class="date" id="result">Nov 15, 2023</h4>
+        <h4 class="date" id="result">Click Here</h4>
       </div>
 
       <div class="left return" onclick="showCalendar('return')">
         <p>Return</p>
-        <h4 class="date" id="result1">Dec 15, 2023</h4>
+        <h4 class="date" id="result1">Click Here</h4>
       </div>
     </div>
   </div>
@@ -83,9 +83,11 @@
 
   <div id="returnPopup" class="popup">
     <button onclick="hideCalendarPopup('return')">Close</button>
+   <div class="wrapper">
     <p>Choose a Date for Return</p>
     <input type="date" name="" value="" style="position: absolute; left:0; top: 60%;" id="dateInput1" oninput="convertDateFormat1()">
   </div>
+</div>
 
   <div id="toPopup" class="popup">
     <button onclick="hideCalendarPopup('to')">Close</button>
@@ -99,19 +101,19 @@
 
 
 
-    <div class="place">
+    <div class="place" id="b1">
       <p>Bungtod</p>
-      <span>Bogo City, Cebu</span>
+      <span>Bogo City</span>
     </div>
 
-    <div class="place">
-      <p>Bungtod</p>
-      <span>Bogo City, Cebu</span>
+    <div class="place" id="b2">
+      <p>Taytayan</p>
+      <span>Bogo City</span>
     </div>
 
-    <div class="place">
-      <p>Bungtod</p>
-      <span>Bogo City, Cebu</span>
+    <div class="place" id="b3">
+      <p>Gairan</p>
+      <span>Bogo City</span>
     </div>
 </div>
 
@@ -121,6 +123,7 @@
   <input type="button" name="" value="Find your Tricycle">
   <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript" src="js/popup.js"></script>
+  <script src="js/place.js"></script>
 </body>
 
 </html>
