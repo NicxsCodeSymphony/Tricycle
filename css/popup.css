@@ -1,100 +1,100 @@
 .popup {
-  position: fixed;
-  bottom: -100%;
-  left: 0;
-  width: 100%;
-  height: 0;
-  background-color: #fff; /* Adjust the background color as needed */
-  overflow: hidden;
-  transition: height 0.5s, bottom 0.5s;
-}
-
-.popup button {
-  width: 100%;
-  height: 50px; /* Adjust the button height as needed */
-  background-color: #ff7b54; /* Adjust the button background color as needed */
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 900;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
-
-.popup input[type="date"]{
-  height: 50px;
-  width: 80%;
-  text-align: center;
-  margin-left: 10%;
-}
-
-.popup p{
-  font-size: 1.3rem;
-  color: #000;
-  margin: 50px 0;
-}
-
-.wrapper{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
-.to-wrappers{
-  padding: 0 20px;
-  height: 100%;
-  width: 100%;
-  color: #000;
-
-}
-
-.to-wrappers p{
-  margin: 20px 0 0 0;
-  font-size: 1rem;
-}
-
-.to-wrappers input{
-  height: 43px;
-  width: 100%;
-  margin-top: 5px;
-  border: none;
-  border-bottom: 1px #3a4039 solid;
-  padding: 0 0 5px 5px;
-  font-size: 1.4rem;
-}
-
-.to-wrappers h5{
-  margin-top: 25px;
-  font-size: 1rem;
-}
-
-.scroll-sec{
-  max-height: 200px;
-  overflow: auto;
-}
-
-.to-wrappers .place{
-  border: 1px #3a4039 solid;
-  width: 100%;
-  height: 65px;
-  border-radius: 20px;
-  margin: 20px 0;
-  padding-left: 10px;
-}
-
-.to-wrappers .place p{
-  font-size: 1.1rem;
-  margin-top: 12px;
-}
-
-.to-wrappers .place span{
-  color: #3a4039;
-  opacity: 0.6;
-  font-size: 0.7rem;
-}
-
-.to-wrappers .place:hover{
-  background-color: #ff7b54
-}
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #fff; /* Adjust the background color as needed */
+    overflow: hidden;
+    transition: height 0.5s, bottom 0.5s;
+  }
+  
+  .popup button {
+    width: 100%;
+    height: 50px; /* Adjust the button height as needed */
+    background-color: #ff7b54; /* Adjust the button background color as needed */
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 900;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .popup input[type="date"]{
+    height: 50px;
+    width: 80%;
+    text-align: center;
+    margin-left: 10%;
+  }
+  
+  .popup p{
+    font-size: 1.3rem;
+    color: #000;
+    margin: 50px 0;
+  }
+  
+  .wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .to-wrappers{
+    padding: 0 20px;
+    height: 100%;
+    width: 100%;
+    color: #000;
+  
+  }
+  
+  .to-wrappers p{
+    margin: 20px 0 0 0;
+    font-size: 1rem;
+  }
+  
+  .to-wrappers input{
+    height: 43px;
+    width: 100%;
+    margin-top: 5px;
+    border: none;
+    border-bottom: 1px #3a4039 solid;
+    padding: 0 0 5px 5px;
+    font-size: 1.4rem;
+  }
+  
+  .to-wrappers h5{
+    margin-top: 25px;
+    font-size: 1rem;
+  }
+  
+  .scroll-sec{
+    max-height: 200px;
+    overflow: auto;
+  }
+  
+  .to-wrappers .place{
+    border: 1px #3a4039 solid;
+    width: 100%;
+    height: 65px;
+    border-radius: 20px;
+    margin: 20px 0;
+    padding-left: 10px;
+  }
+  
+  .to-wrappers .place p{
+    font-size: 1.1rem;
+    margin-top: 12px;
+  }
+  
+  .to-wrappers .place span{
+    color: #3a4039;
+    opacity: 0.6;
+    font-size: 0.7rem;
+  }
+  
+  .to-wrappers .place:hover{
+    background-color: #ff7b54
+  }

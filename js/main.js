@@ -1,4 +1,5 @@
 const logout = document.querySelector(".logout");
+const ctaBtn = document.getElementById("ctaBtn");
 
 
 function increment(type) {
@@ -23,3 +24,9 @@ function increment(type) {
          // Your logout logic goes here
          window.location.href = "index.html";
        });
+
+
+
+       ctaBtn.addEventListener('click', () =>{
+        window.location.href = "tricycle.html";
+       })
