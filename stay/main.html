@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Authentication Example - Logout</title>
+</head>
+<body>
+
+  <!-- Display User's Full Name -->
+  <div id="userFullName" style="display: none;">
+    <h2>Welcome, <span id="displayName"></span>!</h2>
+    <button onclick="logout()">Logout</button>
+
+  </div>
+
+  <script type="module">
+  	import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+// Firebase configuration (same as in your provided code)
+const firebaseConfig = {
+  apiKey: "AIzaSyCsArVB68AapedELqHyLgFoDLrIlNMMYkE",
+  authDomain: "tricycle-reservation-app.firebaseapp.com",
+  databaseURL: "https://tricycle-reservation-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "tricycle-reservation-app",
+  storageBucket: "tricycle-reservation-app.appspot.com",
+  messagingSenderId: "500857377124",
+  appId: "1:500857377124:web:fb78eab96be7a5ae6c6a71"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Get Auth and Database instances
+const auth = getAuth();
+const database = getDatabase();
+
+// Auth State Changed (check if user is logged in)
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in
+    // Retrieve user's name from the database
+    const userRef = ref(database, `users/${user.uid}`);
+    onValue(userRef, (snapshot) => {
+      const userData = snapshot.val();
+      const fullName = userData ? userData.fullName : user.displayName;
+
+      // Display user's name
+      document.getElementById('displayName').innerText = fullName;
+      document.getElementById('userFullName').style.display = 'block';
+    });
+  } else {
+    // User is signed out
+    document.getElementById('userFullName').style.display = 'none';
+  }
+});
+
+// Logout Function
+window.logout = function() {
+  signOut(auth);
+  window.location.href = "index.html";
+};
+
+  </script>
+
+</body>
+</html>

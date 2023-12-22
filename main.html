@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Your Page Title</title>
+  <title>CTU Tricycle Booking</title>
   <link rel="stylesheet" href="/css/popup.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -192,9 +192,19 @@
     <div class="right to" onclick="showTo('to')">
       <p>To</p>
       <h2>DBN</h2>
-      <span class="toPlace">CTU-Daanbantayan</span>
+      <span class="toPlace">Click Here</span>
     </div>
   </div>
+
+
+<div class="section3">
+    <div class="container">
+      <div class="left departure" onclick="showCalendar('date')">
+        <p>Date</p>
+        <h4 class="date" id="result2">Click Here</h4>
+      </div>
+  </div>
+
 
   <div class="section3">
     <div class="container">
@@ -210,19 +220,7 @@
     </div>
   </div>
 
-  <div class="section3">
-    <div class="container">
-      <div class="left departure" onclick="showTimePicker('departure')">
-        <p>Departure Time</p>
-        <h4 class="time" id="timeResult">Click Here</h4>
-      </div>
   
-      <div class="left return" onclick="showTimePicker1('return')">
-        <p>Return Time</p>
-        <h4 class="time" id="timeResult1">Click Here</h4>
-      </div>
-    </div>  
-  </div>
 
 
   <div class="section3">
@@ -241,37 +239,36 @@
   </div>
 
   <!-- POPUP SECTION -->
-  <div id="departurePopup" class="popup">
-    <button onclick="hideCalendarPopup('departure')">Close</button>
+  <!-- Update the styles for the time input in departurePopup -->
+
+ <div id="datePopup" class="popup">
+    <button onclick="hideCalendarPopup('date')">Close</button>
     <div class="wrapper">
-      <p>Choose a Date for Departure</p>
-      <input type="date" name="" value="" style="position: absolute; left:0; top: 60%;" id="dateInput" oninput="convertDateFormat()">
+      <p>Choose a Date</p>
+      <input type="date" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 200px; height: 40px; font-size: 16px;" id="dateInput2" oninput="updateDateResult()">
     </div>
   </div>
 
-  <div id="timePopup" class="popup">
-    <button onclick="hideTimePicker()">Close</button>
-    <div class="wrapper">
-      <p>Choose a Time</p>
-      <input type="time" value="00:00" style="position: absolute; left:0; top: 60%;" id="timeInput" oninput="setTimeResult()">
-    </div>
-  </div>
 
-  <div id="timePopup1" class="popup">
-    <button onclick="hideTimePicker()">Close</button>
-    <div class="wrapper">
-      <p>Choose a Time</p>
-      <input type="time" value="00:00" style="position: absolute; left:0; top: 60%;" id="timeInput1" oninput="setTimeResult1()">
-    </div>
-  </div>
-
-  <div id="returnPopup" class="popup">
-    <button onclick="hideCalendarPopup('return')">Close</button>
-   <div class="wrapper">
-    <p>Choose a Date for Return</p>
-    <input type="date" name="" value="" style="position: absolute; left:0; top: 60%;" id="dateInput1" oninput="convertDateFormat1()">
+<div id="departurePopup" class="popup">
+  <button onclick="hideCalendarPopup('departure')">Close</button>
+  <div class="wrapper">
+    <p>Choose a Time for Departure</p>
+    <!-- Update styles for larger and centered input -->
+    <input type="time" name="" value="" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 200px; height: 40px; font-size: 16px;" id="dateInput" onclick="showTimePopup('departure')" oninput="convertDateFormat()">
   </div>
 </div>
+
+<!-- Update the styles for the time input in returnPopup -->
+<div id="returnPopup" class="popup">
+  <button onclick="hideCalendarPopup('return')">Close</button>
+  <div class="wrapper">
+    <p>Choose a Time for Return</p>
+    <!-- Update styles for larger and centered input -->
+    <input type="time" name="" value="" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 200px; height: 40px; font-size: 16px;" id="dateInput1" onclick="showTimePopup('return')" oninput="convertDateFormat1()">
+  </div>
+</div>
+
 
   <div id="toPopup" class="popup">
     <button onclick="hideCalendarPopup('to')">Close</button>
@@ -285,80 +282,80 @@
 
     
 
-    <div class="place" id="b1" onclick="place('Bagay', 1)">
+    <div class="place" id="b1" onclick="place('Bagay', 30)" data-price="30">
       <p>Bagay</p>
       <span>Daanbantayan</span>
     </div>
 
-    <div class="place" id="b2"  onclick="place('Bakhawan',2)">
+    <div class="place" id="b2"  onclick="place('Bakhawan',30)"  data-price="30">
       <p>Bakhawan</p>
       <span>Medellin</span>
     </div>
 
-    <div class="place" id="b3"  onclick="place('Bateria',3)">
+    <div class="place" id="b3"  onclick="place('Bateria',45)"  data-price="45">
       <p>Bateria</p>
       <span>Daanbantayan</span>
     </div>
 
-    <div class="place" id="b3" onclick="place('Bitoon',4)" >
+    <div class="place" id="b3" onclick="place('Bitoon',45)"  data-price="45">
         <p>Bitoon</p>
         <span>Daanbantayan</span>
       </div>
 
-      <div class="place" id="b3" onclick="place('Calape',5)">
+      <div class="place" id="b3" onclick="place('Calape',35)" data-price="35">
         <p>Calape</p>
         <span>Daanbantayan</span>
       </div>
-      <div class="place" id="b3" onclick="place('Dalingding',6)">
+      <div class="place" id="b3" onclick="place('Dalingding',55)"  data-price="55">
         <p>Dalingding</p>
         <span>Daanbantayan</span>
       </div>
-      <div class="place" id="b3" onclick="place('Lanao',7)">
+      <div class="place" id="b3" onclick="place('Lanao',30)"  data-price="30">
         <p>Lanao</p>
         <span>Daanbantayan</span>
       </div>
 
-      <div class="place" id="b3" onclick="place('Malbago',8)">
+      <div class="place" id="b3" onclick="place('Malbago',45)"  data-price="45">
         <p>Malbago</p>
         <span>Daanbantayan</span>
       </div>
 
-      <div class="place" id="b3" onclick="place('Malingin'),9">
+      <div class="place" id="b3" onclick="place('Malingin',30)"  data-price="30">
         <p>Malingin</p>
         <span>Daanbantayan</span>
       </div>
 
-      <div class="place" id="b3" onclick="place('Maya'),10">
+      <div class="place" id="b3" onclick="place('Maya', 20)"  data-price="20">
         <p>Maya</p>
         <span>Daanbantayan</span>
       </div>
 
-      <div class="place" id="b3" onclick="place('Pajo'),11">
+      <div class="place" id="b3" onclick="place('Pajo', 25)"  data-price="25">
         <p>Pajo</p>
         <span>Daanbantayan</span>
       </div>
 
-      <div class="place" id="b3" onclick="place('Paypay'),12">
+      <div class="place" id="b3" onclick="place('Paypay',30)"  data-price="30">
         <p>Paypay</p>
         <span>Daanbantayan</span>
       </div>
 
-      <div class="place" id="b3" onclick="place('Talisay',13)">
+      <div class="place" id="b3" onclick="place('Talisay',30)"  data-price="30">
         <p>Talisay</p>
         <span>Daanbantayan</span>
       </div>
 
-      <div class="place" id="b3" onclick="place('Tapilon',14)">
+      <div class="place" id="b3" onclick="place('Tapilon',15)"  data-price="15">
         <p>Tapilon</p>
         <span>Daanbantayan</span>
       </div>
 
-      <div class="place" id="b3" onclick="place('Tinubdan',15)">
+      <div class="place" id="b3" onclick="place('Tinubdan',30)"  data-price="30">
         <p>Tinubdan</p>
         <span>Daanbantayan</span>
       </div>
 
-      <div class="place" id="b3" onclick="place('Tominjao',16)">
+      <div class="place" id="b3" onclick="place('Tominjao',45)"  data-price="45">
         <p>Tominjao</p>
         <span>Daanbantayan</span>
       </div>
@@ -367,13 +364,14 @@
     </div>
   </div>
 
+  <div class="btnCon">
   <input type="button" name=""id="ctaBtn" value="Find your Tricycle">
-  
+  </div>
   
   <script type="module">
           import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+import { getDatabase, ref, onValue, push, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
 // Firebase configuration (same as in your provided code)
 const firebaseConfig = {
@@ -406,7 +404,7 @@ onAuthStateChanged(auth, (user) => {
                 // Display user's name
                 document.getElementById('displayName').innerText = fullName;
             });
-        } else {
+        } else {  
             document.getElementById('userFullName').style.display = 'none';
         }
     });
@@ -417,11 +415,133 @@ window.logout = function() {
   window.location.href = "index.html";
 };
 
+let initialPayment;
+
+// Update the place function
+window.place = function (placeName, price) {
+  initialPayment = price; // Store the second parameter in initialPayment
+  document.querySelector('.toPlace').textContent = placeName + ', Daanbantayan'; // Update the UI
+  hideCalendarPopup('to');
+};
+
+window.showTimePopup = function (type) {
+    const timeInput = document.getElementById(`dateInput${type === 'departure' ? '' : '1'}`);
+    const resultElement = document.getElementById(`result${type === 'departure' ? '' : '1'}`);
+
+    timeInput.addEventListener('change', function () {
+      const selectedTime = timeInput.value;
+
+      // Convert the selected time to the desired format
+      const formattedTime = formatTime(selectedTime);
+
+      hideCalendarPopup(type);
+
+      // Display the selected time in the respective date result
+      resultElement.textContent = formattedTime;
+    });
+  };
+
+   window.updateDateResult = function () {
+  const dateInput = document.getElementById('dateInput2');
+  const result2Element = document.getElementById('result2');
+
+  const selectedDate = dateInput.value;
+
+  hideCalendarPopup('date');
+
+  // Display the formatted date in the result2 element
+  result2Element.textContent = formatDate(selectedDate);
+};
+
+  // Function to format time as "1:30 AM"
+  function formatTime(selectedTime) {
+    const [hours, minutes] = selectedTime.split(':');
+    let period = 'AM';
+
+    // Convert to 12-hour format
+    let formattedHours = parseInt(hours);
+    if (formattedHours >= 12) {
+      period = 'PM';
+      formattedHours = formattedHours !== 12 ? formattedHours - 12 : formattedHours;
+    }
+
+    // Ensure leading zero for single-digit minutes
+    const formattedMinutes = minutes.padStart(2, '0');
+
+    return `${formattedHours}:${formattedMinutes} ${period}`;
+  }
+
+  function formatDate(selectedDate) {
+  const months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+
+  const [year, month, day] = selectedDate.split('-');
+  const monthName = months[parseInt(month, 10) - 1];
+
+  return `${monthName} ${parseInt(day, 10)}, ${year}`;
+}
 
 
+  // Event listener for "Find your Tricycle" button
+  document.getElementById('ctaBtn').addEventListener('click', function () {
+    const toPlaceElement = document.querySelector('.toPlace');
+    const resultElement = document.getElementById('result');
+    const result1Element = document.getElementById('result1');
+    const adultCountElement = document.getElementById('adultCount');
+    const dateElement = document.getElementById('result2');
 
+    const toPlace = toPlaceElement ? toPlaceElement.textContent : null;
+    const pickupTime = resultElement ? resultElement.textContent : null;
+    const departureTime = result1Element ? result1Element.textContent : null;
+    const passengerCount = adultCountElement ? adultCountElement.textContent : null;
+    const dateDepart = dateElement ? dateElement.textContent : null;
 
+    // Check if any of the required elements have the value "Click Here"
+    if (toPlace === "Click Here" || pickupTime === "Click Here" || departureTime === "Click Here" || passengerCount === "Click Here") {
+      alert('Please choose values for all sections before finding your tricycle.');
+    } else {
+      // Check if pickup time is later than departure time
+      const pickupTimestamp = Date.parse(`2023-01-01 ${pickupTime}`);
+      const departureTimestamp = Date.parse(`2023-01-01 ${departureTime}`);
 
+      if (pickupTimestamp >= departureTimestamp) {
+        alert('Pickup time should be earlier than departure time.');
+      } else {
+        // Wait for the user to choose a place before writing to the database
+        if (initialPayment !== undefined) {
+          // Create a new entry in the database
+          const newEntryRef = push(ref(database, 'tricycleBookings'));
+          const newEntryKey = newEntryRef.key;
+
+          // Set the data in the database, including the initialPayment
+          set(ref(database, `tricycleBookings/${newEntryKey}`), {
+            toPlace,
+            pickupTime,
+            departureTime,
+            passengerCount,
+            initialPayment,
+            dateDepart
+          });
+
+          localStorage.setItem('toPlace', toPlace);
+    localStorage.setItem('pickupTime', pickupTime);
+    localStorage.setItem('departureTime', departureTime);
+    localStorage.setItem('initialPayment', initialPayment);
+    localStorage.setItem('dateDepart', dateDepart);
+
+          // Reset the initialPayment after storing data
+          initialPayment = undefined;
+
+        // Redirect to the confirmation page with the newEntryKey as a parameter
+        window.location.href = `tricycle.html?toPlace=${toPlace}&pickupTime=${pickupTime}&departureTime=${departureTime}`;
+        } else {
+          alert('Please choose a place before finding your tricycle.');
+        }
+      }
+    }
+  });
 
   </script>
 

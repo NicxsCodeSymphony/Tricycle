@@ -21,13 +21,13 @@
     <div class="left from">
       <p>From</p>
       <h2>DBN</h2>
-      <span>Malbago, Daanbantayan</span>
+      <span>CTU Daanbantayan</span>
     </div>
 
     <div class="right to" onclick="showTo('to')">
       <p>To</p>
-      <h2>BOGO</h2>
-      <span class="toPlace">Bungtod, Bogo City</span>
+      <h2>DBN</h2>
+      <span class="toPlace" id="displayPlace"></span>
     </div>
   </div>
 
@@ -35,12 +35,12 @@
     <div class="container">
       <div class="left departure" onclick="showCalendar('departure')">
         <p>Pickup</p>
-        <h4 class="date" id="result">Click Here</h4>
+        <h4 class="date" id="result"></h4>
       </div>
 
       <div class="left return" onclick="showCalendar('return')">
         <p>Depature</p>
-        <h4 class="date" id="result1">Click Here</h4>
+        <h4 class="date" id="result1"></h4>
       </div>
     </div>
   </div>
@@ -52,11 +52,29 @@
 
 
   <input type="button" onclick="next()" name="" value="Continue">
-  <script type="text/javascript" src="js/main.js"></script>
+  <!-- <script type="text/javascript" src="js/main.js"></script>
   <script type="text/javascript" src="js/popup.js"></script>
-  <script src="js/place.js"></script>
+  <script src="js/place.js"></script> -->
+
+
 
   <script>
+
+    // Inside the script tag in the second file
+document.addEventListener('DOMContentLoaded', function () {
+    // Retrieve data from local storage
+    const toPlace = localStorage.getItem('toPlace');
+    const pickupTime = localStorage.getItem('pickupTime');
+    const departureTime = localStorage.getItem('departureTime');
+    const dateDepart = localStorage.getItem('dateDepart');
+
+    // Set data to the respective elements
+    document.getElementById('displayPlace').innerText = toPlace;
+    document.getElementById('result').innerText = pickupTime;
+    document.getElementById('result1').innerText = departureTime;
+});
+
+
     function next(){
       window.location.href = "commuters.html";
     }

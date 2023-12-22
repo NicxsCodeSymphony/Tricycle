@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Authentication Example - Sign Up</title>
+</head>
+<body>
+
+  <h1>Welcome to My App</h1>
+
+  <!-- Sign Up Form -->
+  <div>
+    <h2>Sign Up</h2>
+    <form id="signupForm">
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+// Firebase configuration (same as in your provided code)
+const firebaseConfig = {
+  apiKey: "AIzaSyCsArVB68AapedELqHyLgFoDLrIlNMMYkE",
+  authDomain: "tricycle-reservation-app.firebaseapp.com",
+  databaseURL: "https://tricycle-reservation-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "tricycle-reservation-app",
+  storageBucket: "tricycle-reservation-app.appspot.com",
+  messagingSenderId: "500857377124",
+  appId: "1:500857377124:web:fb78eab96be7a5ae6c6a71"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Get Auth and Database instances
+const auth = getAuth();
+const database = getDatabase();
+
+// Sign Up Form
+const signupForm = document.getElementById('signupForm');
+signupForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fullName = document.getElementById('fullName').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // Save full name to the database
+    await set(ref(database, `users/${user.uid}`), {
+      fullName: fullName,
+      email: email
+    });
+
+    // Display user's full name
+    document.getElementById('displayName').innerText = fullName;
+    document.getElementById('userFullName').style.display = 'block';
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+  </script>
+
+</body>
+</html>
