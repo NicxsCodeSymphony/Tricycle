@@ -64,3 +64,74 @@ function showCalendar(type) {
                document.getElementById("result1").innerText = formattedDate;
                hideCalendarPopup('return');
            }
+
+           function increment(type) {
+            var countElement = document.getElementById(type + 'Count');
+            var count = parseInt(countElement.textContent, 10);
+            countElement.textContent = count + 1;
+          }
+     
+          function decrement(type) {
+            var countElement = document.getElementById(type + 'Count');
+            var count = parseInt(countElement.textContent, 10);
+            if (count > 1) {
+              countElement.textContent = count - 1;
+            }
+          }
+     
+let destination = '';     
+const toPlace = document.querySelector('.toPlace');
+
+function place(type, counter)
+{
+    toPlace.innerHTML = type + ', Daanbatayan';
+    hideCalendarPopup('to');
+
+}
+
+
+
+function showTimePicker(type) {
+    const popup = document.getElementById('timePopup');
+    popup.style.height = '45%';
+    popup.style.width = '100%';
+    popup.style.bottom = '0';
+  }
+
+  function hideTimePicker() {
+    const popup = document.getElementById('timePopup');
+    popup.style.height = '0';
+    popup.style.width = '0';
+    popup.style.bottom = '-100%';
+  }
+
+  function showTimePicker1(type){
+    const popup = document.getElementById('timePopup1');
+    popup.style.height = '45%';
+    popup.style.width = '100%';
+    popup.style.bottom = '0';
+  }
+
+  function hideTimePicker() {
+    const popup = document.getElementById('timePopup1');
+    popup.style.height = '0';
+    popup.style.width = '0';
+    popup.style.bottom = '-100%';
+  }
+
+
+  function setTimeResult() {
+    // Get the time value from the input
+    const timeInput = document.getElementById('timeInput').value;
+
+    // Display the result
+    document.getElementById('timeResult').innerText = timeInput;
+    hideTimePicker();
+  }
+
+  function setTimeResult1() {
+    const timeInput1 = document.getElementById('timeInput1').value;
+
+    document.getElementById('timeResult1').innerText = timeInput1;
+    hideTimePicker();
+  }
