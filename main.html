@@ -186,13 +186,13 @@
     <div class="left from">
       <p>From</p>
       <h2>DBN</h2>
-      <span>Malbago, Daanbantayan</span>
+      <span>CTU-Daanbantayan</span>
     </div>
 
     <div class="right to" onclick="showTo('to')">
       <p>To</p>
-      <h2>BOGO</h2>
-      <span class="toPlace">Bungtod, Bogo City</span>
+      <h2>DBN</h2>
+      <span class="toPlace">CTU-Daanbantayan</span>
     </div>
   </div>
 
@@ -212,8 +212,23 @@
 
   <div class="section3">
     <div class="container">
+      <div class="left departure" onclick="showTimePicker('departure')">
+        <p>Departure Time</p>
+        <h4 class="time" id="timeResult">Click Here</h4>
+      </div>
+  
+      <div class="left return" onclick="showTimePicker1('return')">
+        <p>Return Time</p>
+        <h4 class="time" id="timeResult1">Click Here</h4>
+      </div>
+    </div>  
+  </div>
+
+
+  <div class="section3">
+    <div class="container">
       <div class="left">
-        <p style="text-align: center">Adult</p>
+        <p style="text-align: center">No. of Passenger</p>
         <div class="number-container">
           <button class="button" onclick="decrement('adult')">-</button>
           <div class="number" id="adultCount">1</div>
@@ -221,14 +236,7 @@
         </div>
       </div>
 
-      <div class="left">
-        <p style="text-align: center">Children</p>
-        <div class="number-container">
-          <button class="button" onclick="decrement('children')">-</button>
-          <div class="number1" style="font-size: 1.3rem;" id="childrenCount">1</div>
-          <button class="button" onclick="increment('children')">+</button>
-        </div>
-      </div>
+      
     </div>
   </div>
 
@@ -238,6 +246,22 @@
     <div class="wrapper">
       <p>Choose a Date for Departure</p>
       <input type="date" name="" value="" style="position: absolute; left:0; top: 60%;" id="dateInput" oninput="convertDateFormat()">
+    </div>
+  </div>
+
+  <div id="timePopup" class="popup">
+    <button onclick="hideTimePicker()">Close</button>
+    <div class="wrapper">
+      <p>Choose a Time</p>
+      <input type="time" value="00:00" style="position: absolute; left:0; top: 60%;" id="timeInput" oninput="setTimeResult()">
+    </div>
+  </div>
+
+  <div id="timePopup1" class="popup">
+    <button onclick="hideTimePicker()">Close</button>
+    <div class="wrapper">
+      <p>Choose a Time</p>
+      <input type="time" value="00:00" style="position: absolute; left:0; top: 60%;" id="timeInput1" oninput="setTimeResult1()">
     </div>
   </div>
 
@@ -259,22 +283,85 @@
 
     <div class="scroll-sec">
 
+    
 
-
-    <div class="place" id="b1">
-      <p>Bungtod</p>
-      <span>Bogo City</span>
+    <div class="place" id="b1" onclick="place('Bagay', 1)">
+      <p>Bagay</p>
+      <span>Daanbantayan</span>
     </div>
 
-    <div class="place" id="b2">
-      <p>Taytayan</p>
-      <span>Bogo City</span>
+    <div class="place" id="b2"  onclick="place('Bakhawan',2)">
+      <p>Bakhawan</p>
+      <span>Medellin</span>
     </div>
 
-    <div class="place" id="b3">
-      <p>Gairan</p>
-      <span>Bogo City</span>
+    <div class="place" id="b3"  onclick="place('Bateria',3)">
+      <p>Bateria</p>
+      <span>Daanbantayan</span>
     </div>
+
+    <div class="place" id="b3" onclick="place('Bitoon',4)" >
+        <p>Bitoon</p>
+        <span>Daanbantayan</span>
+      </div>
+
+      <div class="place" id="b3" onclick="place('Calape',5)">
+        <p>Calape</p>
+        <span>Daanbantayan</span>
+      </div>
+      <div class="place" id="b3" onclick="place('Dalingding',6)">
+        <p>Dalingding</p>
+        <span>Daanbantayan</span>
+      </div>
+      <div class="place" id="b3" onclick="place('Lanao',7)">
+        <p>Lanao</p>
+        <span>Daanbantayan</span>
+      </div>
+
+      <div class="place" id="b3" onclick="place('Malbago',8)">
+        <p>Malbago</p>
+        <span>Daanbantayan</span>
+      </div>
+
+      <div class="place" id="b3" onclick="place('Malingin'),9">
+        <p>Malingin</p>
+        <span>Daanbantayan</span>
+      </div>
+
+      <div class="place" id="b3" onclick="place('Maya'),10">
+        <p>Maya</p>
+        <span>Daanbantayan</span>
+      </div>
+
+      <div class="place" id="b3" onclick="place('Pajo'),11">
+        <p>Pajo</p>
+        <span>Daanbantayan</span>
+      </div>
+
+      <div class="place" id="b3" onclick="place('Paypay'),12">
+        <p>Paypay</p>
+        <span>Daanbantayan</span>
+      </div>
+
+      <div class="place" id="b3" onclick="place('Talisay',13)">
+        <p>Talisay</p>
+        <span>Daanbantayan</span>
+      </div>
+
+      <div class="place" id="b3" onclick="place('Tapilon',14)">
+        <p>Tapilon</p>
+        <span>Daanbantayan</span>
+      </div>
+
+      <div class="place" id="b3" onclick="place('Tinubdan',15)">
+        <p>Tinubdan</p>
+        <span>Daanbantayan</span>
+      </div>
+
+      <div class="place" id="b3" onclick="place('Tominjao',16)">
+        <p>Tominjao</p>
+        <span>Daanbantayan</span>
+      </div>
 </div>
 
     </div>
@@ -308,23 +395,21 @@ const database = getDatabase();
 
 // Auth State Changed (check if user is logged in)
 onAuthStateChanged(auth, (user) => {
-  if (user) {
-    // User is signed in
-    // Retrieve user's name from the database
-    const userRef = ref(database, `users/${user.uid}`);
-    onValue(userRef, (snapshot) => {
-      const userData = snapshot.val();
-      const fullName = userData ? userData.fullName : user.displayName;
+        if (user) {
+            // User is signed in
+            // Retrieve user's name from the database
+            const userRef = ref(database, `users/${user.uid}`);
+            onValue(userRef, (snapshot) => {
+                const userData = snapshot.val();
+                const fullName = userData ? userData.fullName : user.displayName;
 
-      // Display user's name
-      document.getElementById('displayName').innerText = fullName;
-      //document.getElementById('userFullName').style.display = 'block';
+                // Display user's name
+                document.getElementById('displayName').innerText = fullName;
+            });
+        } else {
+            document.getElementById('userFullName').style.display = 'none';
+        }
     });
-  } else {
-    // User is signed out
-    document.getElementById('userFullName').style.display = 'none';
-  }
-});
 
 // Logout Function
 window.logout = function() {
@@ -333,72 +418,15 @@ window.logout = function() {
 };
 
 
-function showCalendar(type) {
-    const popup = document.getElementById(type + 'Popup');
-    popup.style.height = '45%';
-    popup.style.width = '100%';
-    popup.style.bottom = '0';
-    }
-
-    function hideCalendarPopup(type) {
-    const popup = document.getElementById(type + 'Popup');
-    popup.style.height = '0';
-    popup.style.width = '0';
-    popup.style.bottom = '-100%';
-    }
-
-
-    // POP UP FOR CHOOSING DESTINATION
-
-    function showTo(type) {
-    const popup = document.getElementById(type + 'Popup');
-    popup.style.height = '60%';
-    popup.style.width = '100%';
-    popup.style.bottom = '0';
-    }
 
 
 
-
-    function convertDateFormat() {
-        // Get the date value from the input
-        var dateInput = document.getElementById("dateInput").value;
-
-        // Convert the date to a Date object
-        var dateObject = new Date(dateInput);
-
-        // Format the date as MMM DD, YYYY
-        var formattedDate = new Intl.DateTimeFormat('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: '2-digit'
-        }).format(dateObject);
-
-        // Display the result
-        document.getElementById("result").innerText = formattedDate;
-        hideCalendarPopup('departure');
-    }
-
-
-
-    function convertDateFormat1() {
-               // Get the date value from the input
-               var dateInput = document.getElementById("dateInput1").value;
-
-               // Convert the date to a Date object
-               var dateObject = new Date(dateInput);
-
-               // Format the date as MMM DD, YYYY
-               var formattedDate = new Intl.DateTimeFormat('en-US', {
-                   year: 'numeric',
-                   month: 'short',
-                   day: '2-digit'
-               }).format(dateObject);
-
-               // Display the result
-               document.getElementById("result1").innerText = formattedDate;
-               hideCalendarPopup('return');
-           }
 
 
   </script>
+
+<script src="js/popup.js"></script>
+
+
+</body>
+</html>
