@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Your App Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  ::placeholder{
+    color: #000;
+    font-weight: 900;
+  }
+
+  body {
+     font-family: Arial, sans-serif;
+     margin: 0;
+     padding: 0;
+     background-color: #f0f0f0;
+     color: #333;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     min-height: 100vh;
+     background: #1d3e51;
+  }
+
+  main{
+     width: 40vh;
+     height: 50vh;
+     margin: 0 auto;
+     padding: 30px;
+     background: #fff;
+  }
+
+  h1{
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 80px 0;
+    color: #fff;
+  }
+
+  form{
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  input{
+    height: 40px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-left: 35px;
+    border:none;
+    border-bottom: 1px #c0c0c0 solid;
+    background: transparent;
+  }
+
+  input:first-child{
+    margin-top: 30px;
+  }
+
+  button{
+    height: 40px;
+    width:100%;
+    border: none;
+    background: #f26422;
+    padding: 0;
+    text-align: center;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+  }
+
+  i{
+    position: absolute;
+    left:10px;
+    top: 42px;
+    width: 100px;
+  }
+
+  .pass{
+    top: 18vh;
+  }
+
+
+
+
+  /* Add additional styling and media queries as needed */
+  @media only screen and (max-width: 600px) {
+     /* Add styles for small screens */
+  }
+    </style>
+
+
+</head>
+<body>
+
+  <h1>Login</h1>
+
+<main>
+  <form id="signupForm">
+<input type="text" name="name" id="fullName" placeholder="Full Name">
+    <i class="fa-regular fa-user"></i>
+    <input type="text" name="email" value="" class="email" id="email" placeholder="Email">
+    <i class="fa-regular fa-user"></i>
+    <input type="password" name="password" class="password" value="" id="password" placeholder="Password">
+    <i class="fa-solid fa-lock pass"></i>
+
+    <button type="submit"> Log In </button>
+    
+    <span>Already have an account? <a href="index.html">Login</a></span>
+
+  </form>
+</main>
+
+ 
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+// Firebase configuration (same as in your provided code)
+const firebaseConfig = {
+  apiKey: "AIzaSyCsArVB68AapedELqHyLgFoDLrIlNMMYkE",
+  authDomain: "tricycle-reservation-app.firebaseapp.com",
+  databaseURL: "https://tricycle-reservation-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "tricycle-reservation-app",
+  storageBucket: "tricycle-reservation-app.appspot.com",
+  messagingSenderId: "500857377124",
+  appId: "1:500857377124:web:fb78eab96be7a5ae6c6a71"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+// Get Auth and Database instances
+const auth = getAuth();
+const database = getDatabase();
+
+// Sign Up Form
+const signupForm = document.getElementById('signupForm');
+signupForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const fullName = document.getElementById('fullName').value;
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    // Save full name to the database
+    await set(ref(database, `users/${user.uid}`), {
+      fullName: fullName,
+      email: email
+    });
+
+    // Display user's full name
+    document.getElementById('displayName').innerText = fullName;
+    document.getElementById('userFullName').style.display = 'block';
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+  </script>
+
+</body>
+</html>
