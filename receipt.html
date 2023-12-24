@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <style>
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .receipt-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 100%;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .receipt-item {
+            margin-bottom: 15px;
+        }
+
+        .receipt-item strong {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+    <title>Receipt</title>
+</head>
+<body>
+
+    <div class="receipt-container">
+        <div class="receipt-item">
+            <strong>Fullname:</strong> <span id="fullname"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Email:</strong> <span id="email"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Contact:</strong> <span id="contact"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Gender:</strong> <span id="gender"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>From Place:</strong> <span id="fromPlace"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>To Place:</strong> <span id="toPlace"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Date:</strong> <span id="dateDepart"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>From Time:</strong> <span id="departureTime"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>To Time:</strong> <span id="toTime"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>No. of Passenger:</strong> <span id="passengerCount"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Pickup Time:</strong> <span id="pickupTime"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Departure Time:</strong> <span id="departureTime"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Payment Method:</strong> <span id="paymentMethod"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Travel Fee:</strong> <span id="travelFee"></span>
+        </div>
+         <div class="receipt-item">
+            <strong>Total Payment:</strong> <span id="total"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Amount:</strong> <span id="amount"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Change:</strong> <span id="change"></span>
+        </div>
+
+        <div class="button-container">
+            <button class="button" id="cta">Print Receipt</button>
+        </div>
+    </div>
+
+     
+    <div class="receipt-container">
+        <!-- Your HTML structure here -->
+    </div>
+
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCsArVB68AapedELqHyLgFoDLrIlNMMYkE",
+            authDomain: "tricycle-reservation-app.firebaseapp.com",
+            databaseURL: "https://tricycle-reservation-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "tricycle-reservation-app",
+            storageBucket: "tricycle-reservation-app.appspot.com",
+            messagingSenderId: "500857377124",
+            appId: "1:500857377124:web:fb78eab96be7a5ae6c6a71"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        // Get Auth and Database instances
+        const auth = getAuth(app);
+        const database = getDatabase();
+
+        // Reference to your data in the database
+        const dataRef = ref(database, 'transactionRecords');
+
+        // Get the data from the database
+        get(dataRef).then((snapshot) => {
+            const data = snapshot.val();
+
+            if (data !== null) {
+                // Access nested data under 'tricycleData'
+                const tricycleData = data.tricycleData;
+
+                // Update HTML elements with the retrieved data
+                document.getElementById('fullname').innerText = tricycleData.name;
+                document.getElementById('email').innerText = tricycleData.email;
+                // ...
+
+                // For the specific elements you mentioned
+                document.getElementById('paymentMethod').innerText = tricycleData.paymentMethod;
+                document.getElementById('amount').innerText = tricycleData.amountPaid;
+                document.getElementById('change').innerText = tricycleData.change;
+                document.getElementById('total').innerText = tricycleData.totalAmount;
+
+                // You can add similar lines for other elements
+            } else {
+                console.log("Data does not exist at the specified path.");
+            }
+        });
+
+    </script>
+
+</body>
+</html>
+
+Please make sure to adjust the code based on your actual data structure and paths. This example assumes that the data you provided is directly under the transactionRecords node. If there are additional nested levels, adjust the code accordingly.
+User
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .receipt-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 100%;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        .receipt-item {
+            margin-bottom: 15px;
+        }
+
+        .receipt-item strong {
+            display: inline-block;
+            width: 150px;
+            font-weight: bold;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+    <title>Receipt</title>
+</head>
+<body>
+
+    <div class="receipt-container">
+        <div class="receipt-item">
+            <strong>Fullname:</strong> <span id="fullname"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Email:</strong> <span id="email"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Contact:</strong> <span id="contact"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Gender:</strong> <span id="gender"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>From Place:</strong> <span id="fromPlace"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>To Place:</strong> <span id="toPlace"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Date:</strong> <span id="dateDepart"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>From Time:</strong> <span id="departureTime"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>To Time:</strong> <span id="toTime"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>No. of Passenger:</strong> <span id="passengerCount"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Pickup Time:</strong> <span id="pickupTime"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Departure Time:</strong> <span id="departureTime"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Payment Method:</strong> <span id="paymentMethod"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Travel Fee:</strong> <span id="travelFee"></span>
+        </div>
+         <div class="receipt-item">
+            <strong>Total Payment:</strong> <span id="total"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Amount:</strong> <span id="amount"></span>
+        </div>
+        <div class="receipt-item">
+            <strong>Change:</strong> <span id="change"></span>
+        </div>
+
+        <div class="button-container">
+            <button class="button" id="cta">Print Receipt</button>
+        </div>
+    </div>
+
+
+</body>
+</html>

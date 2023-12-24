@@ -1,6 +1,5 @@
-<!DOCTYPE >
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -8,13 +7,14 @@
   <link rel="stylesheet" href="/css/tricycle.css">
   <link rel="stylesheet" href="/css/popup.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
-
 <body>
 
-  <header>
-    <i class="fa-solid fa-arrow-left logout"></i>
-    <i class="fa-solid fa-bars"></i>
+ <header>
+    <i class="fa-solid fa-arrow-left logout" onclick="logout()"></i>
+    <p style="font-size: 14px; margin-top: 1.1px;">Tricycle Booking</p>
+    <i></i>
   </header>
 
   <div class="section2">
@@ -45,40 +45,153 @@
     </div>
   </div>
 
-    <div style="height: 40vh;" class="sample">
+  <p style="margin:30px 0 20px 0; width:100%; text-align: center;">Choose a Tricycle</p>
 
-    </div>
+  <div class="tricyclesContainer">
+    <div id="seat1" class="sample"> 
+      <div class="sampleLeft">
+      <h1>Tricycle 1 </h1>
+      </div>
+
+      <div class="sampleRight">
+       <p>Avalable Seats</p> 
+        <span id="seat1Count">0</span>
+      </div>
+      </div>
+
+   <div class="tricyclesContainer">
+    <div id="seat2" class="sample"> 
+      <div class="sampleLeft">
+      <h1>Tricycle 2 </h1>
+      </div>
+
+      <div class="sampleRight">
+       <p>Avalable Seats</p> 
+        <span id="seat2Count">0</span>
+      </div>
+      </div>
+
+      <div class="tricyclesContainer">
+    <div id="seat3" class="sample"> 
+      <div class="sampleLeft">
+      <h1>Tricycle 3 </h1>
+      </div>
+
+      <div class="sampleRight">
+       <p>Avalable Seats</p> 
+        <span id="seat3Count">0</span>
+      </div>
+      </div>
+  </div>
 
 
-
-  <input type="button" onclick="next()" name="" value="Continue">
-  <!-- <script type="text/javascript" src="js/main.js"></script>
-  <script type="text/javascript" src="js/popup.js"></script>
-  <script src="js/place.js"></script> -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
 
 
+  <input type="button" name="" value="Continue" id="continueButton">
 
-  <script>
+  <script type="module">
 
-    // Inside the script tag in the second file
-document.addEventListener('DOMContentLoaded', function () {
-    // Retrieve data from local storage
-    const toPlace = localStorage.getItem('toPlace');
-    const pickupTime = localStorage.getItem('pickupTime');
-    const departureTime = localStorage.getItem('departureTime');
-    const dateDepart = localStorage.getItem('dateDepart');
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, onValue, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-    // Set data to the respective elements
-    document.getElementById('displayPlace').innerText = toPlace;
-    document.getElementById('result').innerText = pickupTime;
-    document.getElementById('result1').innerText = departureTime;
-});
+    const firebaseConfig = {
+      apiKey: "AIzaSyCsArVB68AapedELqHyLgFoDLrIlNMMYkE",
+      authDomain: "tricycle-reservation-app.firebaseapp.com",
+      databaseURL: "https://tricycle-reservation-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "tricycle-reservation-app",
+      storageBucket: "tricycle-reservation-app.appspot.com",
+      messagingSenderId: "500857377124",
+      appId: "1:500857377124:web:fb78eab96be7a5ae6c6a71"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const toPlace = localStorage.getItem('toPlace');
+      const pickupTime = localStorage.getItem('pickupTime');
+      const departureTime = localStorage.getItem('departureTime');
+      const passengerCount = localStorage.getItem('passengerCount');
+
+      console.log('Passenger Count:', passengerCount);
+
+      document.getElementById('displayPlace').innerText = toPlace;
+      document.getElementById('result').innerText = pickupTime;
+      document.getElementById('result1').innerText = departureTime;
+
+      const seat1Element = document.getElementById('seat1Count');
+      const seat2Element = document.getElementById('seat2Count');
+      const seat3Element = document.getElementById('seat3Count');
+
+      const tricycleRef = ref(database, 'tricycle');
+
+      onValue(tricycleRef, (snapshot) => {
+        const tricycles = snapshot.val();
+
+        // Update the HTML elements with the corresponding values from the database
+        seat1Element.innerText = tricycles.tricycle1.count || 0;
+        seat2Element.innerText = tricycles.tricycle2.count || 0;
+        seat3Element.innerText = tricycles.tricycle3.count || 0;
+      });
+
+      let counter = 0;
+      let total = 0;
+
+      const sample1 = document.getElementById('seat1');
+      const sample2 = document.getElementById('seat2');
+      const sample3 = document.getElementById('seat3');
+
+      sample1.addEventListener('click', function () {
+        sample1.classList.add('sampleClicked');
+        sample2.classList.remove('sampleClicked');
+        sample3.classList.remove('sampleClicked');
+        const spanValue = parseInt(seat1Element.innerText);
+        total = spanValue - passengerCount;
+        console.log('Sample 1 Span Value:', total);
+        counter = 1;
+      });
+
+      sample2.addEventListener('click', function () {
+        sample2.classList.add('sampleClicked');
+        sample1.classList.remove('sampleClicked');
+        sample3.classList.remove('sampleClicked');
+        const spanValue = seat2Element.innerText;
+        total = spanValue - passengerCount;
+        console.log('Sample 2 Span Value:', total);
+        counter = 2;
+      });
+
+      sample3.addEventListener('click', function () {
+        sample3.classList.add('sampleClicked');
+        sample2.classList.remove('sampleClicked');
+        sample1.classList.remove('sampleClicked');
+        const spanValue = seat3Element.innerText;
+        total = spanValue - passengerCount;
+        console.log('Sample 3 Span Value:', total);
+        counter = 3;
+      });
+
+      const ctaBtn = document.getElementById('continueButton');
+      ctaBtn.addEventListener('click', () => {
+        loadingOverlay.style.display = 'flex';
+        const tricycleNumber = counter;
 
 
-    function next(){
-      window.location.href = "commuters.html";
-    }
+        // Update the corresponding tricycle node in the database with the new total value
+        update(ref(database, `tricycle/tricycle${tricycleNumber}`), { count: total })
+          .then(() => {
+            console.log(`Tricycle ${tricycleNumber} updated successfully!`);
+            window.location.href = "commuters.html";
+          })
+          .catch((error) => {
+            console.error('Error updating tricycle:', error);
+          });
+      });
+    });
+
   </script>
 </body>
-
 </html>

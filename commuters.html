@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/commuters.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/popup.css"> -->
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 <body>
     
@@ -19,6 +21,11 @@
 <div class="btnCon">
 <button id="saveButton">Proceed to Payment</button>
 </div>
+
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
 <!-- ... (your HTML code remains the same) ... -->
 
 <script type="module">
@@ -117,8 +124,10 @@
 saveButton.addEventListener('click', saveTravelerData);
 
 function saveTravelerData() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+     loadingOverlay.style.display = 'flex';
     const hero = document.getElementById('hero');
-    const travelerDivs = Array.from(hero.children); // Convert HTMLCollection to array
+    const travelerDivs = Array.from(hero.children);
 
     travelerDivs.forEach((travelerDiv, index) => {
         const name = document.getElementById(`name${index + 1}`).value;
@@ -126,13 +135,14 @@ function saveTravelerData() {
         const contact = document.getElementById(`contact${index + 1}`).value;
         const gender = document.getElementById(`male${index + 1}`).classList.contains('selected') ? 'Male' : 'Female';
 
-        // You can customize the path based on your database structure
-        const travelerRef = push(ref(database, `travelers/${user.uid}`)); // Use push to generate a unique key
+        // Push data to a generic "travelers" path
+        const travelerRef = push(ref(database, 'travelers'));
         set(travelerRef, { name, email, contact, gender });
     });
 
-    window.location.href = "payment.html";
+    window.location.href = 'payment.html';
 }
+
 
             // Fetch passengerCount from Firebase and create elements
             const bookingsRef = ref(database, 'tricycleBookings');

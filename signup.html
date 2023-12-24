@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Your App Title</title>
+    <link rel="stylesheet" type="text/css" href="css/popup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     
     <style>
 *{
@@ -19,7 +21,7 @@
   }
 
   body {
-     font-family: Arial, sans-serif;
+     font-family: 'Poppins', sans-serif;
      margin: 0;
      padding: 0;
      background-color: #f0f0f0;
@@ -29,11 +31,12 @@
      align-items: center;
      min-height: 100vh;
      background: #1d3e51;
+     overflow: hidden;
   }
 
   main{
      width: 40vh;
-     height: 50vh;
+     height: 55vh;
      margin: 0 auto;
      padding: 30px;
      background: #fff;
@@ -79,12 +82,6 @@
     margin-bottom: 15px;
   }
 
-  i{
-    position: absolute;
-    left:10px;
-    top: 42px;
-    width: 100px;
-  }
 
   .pass{
     top: 18vh;
@@ -108,11 +105,11 @@
 <main>
   <form id="signupForm">
 <input type="text" name="name" id="fullName" placeholder="Full Name">
-    <i class="fa-regular fa-user"></i>
+    <i style="position: absolute; left: 0; top: 12%" class="fa-regular fa-user"></i>
     <input type="text" name="email" value="" class="email" id="email" placeholder="Email">
-    <i class="fa-regular fa-user"></i>
-    <input type="password" name="password" class="password" value="" id="password" placeholder="Password">
-    <i class="fa-solid fa-lock pass"></i>
+    <i style="position: absolute; left: 0; top: 33%" class="fa-regular fa-user"></i>
+    <input  type="password" name="password" class="password" value="" id="password" placeholder="Password">
+    <i style="position: absolute; left: 0; top: 52%" class="fa-solid fa-lock pass"></i>
 
     <button type="submit"> Sign Up </button>
     
@@ -120,6 +117,14 @@
 
   </form>
 </main>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="custom-alert" id="customAlert"></div>
+   <div class="overlay"></div>
+
 
  
   <script type="module">
@@ -145,6 +150,24 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 const database = getDatabase();
 
+
+ function showAlert(message) {
+  const loadingOverlay = document.getElementById('loadingOverlay')
+  const customAlert = document.getElementById('customAlert');
+  const overlay = document.querySelector('.overlay');
+
+  customAlert.innerText = message;
+  customAlert.style.display = 'block';
+
+  overlay.classList.add('show-overlay'); // Show the overlay
+
+  setTimeout(() => {
+    customAlert.style.display = 'none';
+    loadingOverlay.style.display = "none";
+    overlay.classList.remove('show-overlay'); // Hide the overlay
+  }, 2000);
+}
+
 // Sign Up Form
 const signupForm = document.getElementById('signupForm');
 signupForm.addEventListener('submit', async (e) => {
@@ -154,6 +177,7 @@ signupForm.addEventListener('submit', async (e) => {
   const password = document.getElementById('password').value;
 
   try {
+    loadingOverlay.style.display = 'flex';
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
@@ -163,10 +187,11 @@ signupForm.addEventListener('submit', async (e) => {
       email: email
     });
 
-    alert("Account Created Successfully");
+    showAlert("Account Created Successfully");
     window.location.href = "index.html";
     
   } catch (error) {
+    showAlert('You already have an Account\nLog in to your Account')
     console.error(error.message);
   }
 });

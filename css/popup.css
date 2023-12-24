@@ -1,3 +1,14 @@
+body {
+  position: relative;
+  left: 0; /* Initially position the body at its normal position */
+  transition: left 0.5s ease; /* Add a transition for smooth animation */
+}
+
+.body-shifted {
+  left: 100%; /* Move the body content to the right when shifted */
+}
+
+
 .popup {
     position: fixed;
     bottom: -100%;
@@ -35,9 +46,6 @@
   }
   
   .wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 100%;
     height: 100%;
   }
@@ -71,7 +79,8 @@
   }
   
   .scroll-sec{
-    max-height: 200px;
+    margin-top: 30px;
+    height: 60vh;
     overflow: auto;
   }
   
@@ -80,7 +89,7 @@
     width: 100%;
     height: 65px;
     border-radius: 20px;
-    margin: 20px 0;
+    margin-bottom: 20px;
     padding-left: 10px;
   }
   
@@ -98,3 +107,81 @@
   .to-wrappers .place:hover{
     background-color: #ff7b54
   }
+
+.paymentMethod{
+  height: 100%;
+  width: 100%;
+}
+
+.paymentMethod input{
+  height: 50px;
+  width: 60%;
+}
+
+
+.loading-overlay {
+            display: none;
+            position: fixed;
+            top:0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .spinner {
+            border: 8px solid rgba(0, 0, 0, 0.1);
+            border-top: 8px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .custom-alert {
+            display: none;
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: opacity 3s ease;
+            color: #000;
+            width: 80%;
+            text-align: center;
+         
+        }
+
+        .custom-alert.show {
+    opacity: 1; /* Change opacity to 1 when the class "show" is added */
+}
+
+
+.show-overlay {
+  display: block; /* Show the overlay when this class is added */
+  position: fixed;
+  top: 0;
+  left:0;
+  width: 100%;
+  height: 100%;
+    background: #000;
+    opacity: 0.7;
+}
+
+.custom-alert.show {
+  /* Adjust the styles for the alert when the overlay is active */
+   /* Make sure the alert is on top of the overlay */
+ z-index: 1001;
+}

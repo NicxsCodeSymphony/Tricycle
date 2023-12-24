@@ -6,6 +6,8 @@
 
 body {
     background-color: #0a1511;
+    font-family: 'Poppins',san-serif;
+    overflow-x: hidden;
 }
 
 header {
@@ -27,7 +29,7 @@ header {
 
 .wrapper {
     border: 1px #3a4039 solid;
-    height: 40vh;
+    height: 44vh;
     width: 90%;
     border-radius: 20px;
     margin-bottom: 20px;
@@ -48,11 +50,12 @@ input {
     border-bottom: 1px #3a4039 solid;
     background: transparent;
     margin-top: 14px;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: #fff;
     padding: 5px 0;
     margin-left: 10px;
     width: 90%;
+    font-family: 'Poppins';
 }
 
 .button-container {
@@ -106,13 +109,18 @@ button.selected {
     text-align: center;
     width: 80%;
     height: 60px;
-    background: orange;
+    background: #ff7b54;
     color: #fff;
     border-radius: 10px;
     border: none;
 }
 
 button.selected {
-    background-color: #fff;
-    color: #0a1511;
+    background-color: #ff7b54;
+    color: #fff;
+}
+
+.expanded{
+    height: 46vh;
+    min-height: 46vh;
 }

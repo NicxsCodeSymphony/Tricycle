@@ -5,213 +5,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>CTU Tricycle Booking</title>
-  <link rel="stylesheet" href="/css/popup.css">
+  <!-- <link rel="stylesheet" href="/css/popup.css"> -->
+  <link rel="stylesheet" type="text/css" href="css/payment.css">
+  <link rel="stylesheet" type="text/css" href="css/popup.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
-
-<style>
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-     font-family: Arial, sans-serif;
-     margin: 0;
-     padding: 0;
-     background-color: #f0f0f0;
-     color: #fff;
-    height: 100%;
-     background: #0a1511;
-     min-width: 100vw;
-     padding: 0 20px;
-  }
-
-  header{
-    height: 10vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  header i{
-    font-size: 1.2rem;
-    color: #fff;
-  }
-
-  header i:last-child{
-    text-align: right;
-  }
-
-  .section1{
-    border-bottom: 1px #3a4039 solid;
-    padding: 10px 0;
-    margin-bottom: 20px;
-  }
-
-  .section1 p{
-      color: #3a4039;
-  }
-
-  .stand{
-    font-size: 2rem;
-  }
-
-  .section2{
-    display: grid;
-    grid-template-columns: 2fr 2fr;
-    gap: 50px;
-  }
-
-  .section2 > div{
-    border-bottom: 1px #3a4039 solid;
-    padding-bottom: 10px;
-  }
-
-  .section2 p{
-    color: #515346;
-  }
-
-  .section2 h2{
-    margin:4px 0;
-    font-size: 1.8rem;
-  }
-
-  .section2 span{
-    color: #3a4039;
-    font-size: 0.7rem;
-  }
-
-  .section2 .right{
-    text-align: right;
-  }
-
-  .section3{
-    border: 1px #3a4039 solid;
-    margin-top: 20px;
-    height: 12vh;
-    border-radius: 20px;
-    width: 100%;
-  }
-
-  .container{
-    display:flex;
-    height: 100%;
-    width: 100%;
-  }
-
-  .container > div{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  .container .left{
-    border-right: #3a4039 solid 1px;
-    padding: 5px 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .container .left:last-child{
-    border-right: none;
-  }
-
-  .container .right p{
-    font-size: 1rem;
-  }
-
-  .container p{
-    margin-bottom: 5px;
-    color: #3a4039;
-    font-size: 0.8rem;
-  }
-
-  .container h4{
-    font-size: 1.4rem;
-  }
-
-  h1,h2,h3,h4{
-    font-weight: 100;
-  }
-
-  .number-container{
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    height: 80px;
-    flex-direction: column;
-  }
-
-  .number{
-    font-size: 1.3rem;
-  }
-
-  .button{
-    background: transparent;
-    border-radius: 50%;
-    border: 1px #3a4039 solid;
-    width: 25px;
-    color: #fff;
-    height: 25px;
-    text-align: center;
-  }
-
-  input[type="button"]{
-    width: 100%;
-    height: 8vh;
-    background: #ff7b54;
-    margin-top: 60px;
-    border: none;
-    outline: none;
-    border-radius: 20px;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 900;
-  }
-
-
-  input[type="number"]{
-    border: 1px #3a4039 solid;
-    width: 100%;
-    font-size: 18px;
-    height: 30px;
-    text-align: center;
-    background: transparent;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-
-
-</style>
 
 <body>
 
+
   <header>
     <i class="fa-solid fa-arrow-left logout" onclick="logout()"></i>
-    <i class="fa-solid fa-bars"></i>
+    <p style="font-size: 14px; margin-top: 1.1px;">Tricycle Booking</p>
+    <i></i>
   </header>
 
   <div class="section1">
-    <p>Tricycle Bo</p>
+    <p>Tricycle Book</p>
     <h3 class="stand" >Payment</h3>
   </div>
 
   <div class="section2">
     <div class="left from">
-      <p>From</p>
       <h2 id="initial">0</h2>
       <span>Travel Fee</span>
     </div>
 
     <div class="right to" onclick="showTo('to')">
-      <p>To</p>
       <h2 id="numOfPassengers">0</h2>
       <span class="toPlace">No. of Passengers</span>
     </div>
@@ -251,7 +72,7 @@
          <div class="number-container">
         <p style="text-align: center">Enter Amount</p>
        
-          <input type="number" name="">
+          <input type="number" id="amount" name="" placeholder="Enter amount here">
         </div>
       </div>
 
@@ -265,20 +86,34 @@
  <div id="datePopup" class="popup">
     <button onclick="hideCalendarPopup('date')">Close</button>
     <div class="wrapper">
-      <p>Choose a Date</p>
-      <input type="date" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 200px; height: 40px; font-size: 16px;" id="dateInput2" oninput="updateDateResult()">
+      <p style="text-align: center;">Choose a Payment Method</p>
+      
+        <div class="paymentMethod">
+          <input type="button" id="gcash" value="Gcash">   
+          <input type="button" id="maya" value="Maya">   
+        </div>
+
     </div>
   </div>
 
+   <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="custom-alert" id="customAlert"></div>
+   <div class="overlay"></div>
+
+
 
   <div class="btnCon">
-  <input type="button" name=""id="ctaBtn" value="Find your Tricycle">
+  <input type="button" name=""id="ctaBtn" value="Pay" style="font-size: 20px">
   </div>
   
   <script type="module">
           import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getDatabase, ref, onValue, push, set, child } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getDatabase, ref, onValue, push, set, child, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
 
 // Firebase configuration (same as in your provided code)
 const firebaseConfig = {
@@ -291,39 +126,138 @@ const firebaseConfig = {
   appId: "1:500857377124:web:fb78eab96be7a5ae6c6a71"
 };
 
+
+       function showAlert(message) {
+  const customAlert = document.getElementById('customAlert');
+  const overlay = document.querySelector('.overlay');
+
+  customAlert.innerText = message;
+  customAlert.style.display = 'block';
+
+  overlay.classList.add('show-overlay'); // Show the overlay
+
+  setTimeout(() => {
+    customAlert.style.display = 'none';
+    overlay.classList.remove('show-overlay'); // Hide the overlay
+  }, 2000);
+}
+
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Get Auth and Database instances
-const auth = getAuth();
-const database = getDatabase();
+  // Get Auth and Database instances
+  const auth = getAuth(app);
+  const database = getDatabase();
 
-const tricycleBookingsRef = ref(database, 'tricycleBookings');
+    const bookingsRef = ref(database, 'tricycleBookings');
+  onValue(bookingsRef, (snapshot) => {
+    const bookingsData = snapshot.val();
+    if (bookingsData) {
+      const firstBookingKey = Object.keys(bookingsData)[0];
+      const passengerCount = bookingsData[firstBookingKey].passengerCount || 0;
+      const initialPayment = bookingsData[firstBookingKey].initialPayment;
 
-// Assuming you have the unique key for a specific booking
-const bookingKey = 'NmINLrlj0lXrA4I102q';
+      let calculatePayment = passengerCount * initialPayment;
 
-// Reference to the specific booking node
-const bookingRef = child(tricycleBookingsRef, bookingKey);
+      document.getElementById('numOfPassengers').innerText = passengerCount;
+      document.getElementById('initial').innerText = '₱ ' + initialPayment;
+      document.getElementById('total').innerText = '₱ ' + calculatePayment.toFixed(2);
+    }
+  });
 
-// Attach an event listener to listen for changes in the booking data
-onValue(bookingRef, (snapshot) => {
-  const bookingData = snapshot.val();
+    const amountInput = document.getElementById('amount');
+    const changeElement = document.getElementById('change');
+    const totalPay = document.getElementById('total').innerText.replace('₱ ', '');
+    const paFloat = parseFloat(totalPay);
+    const updateChangeElement = () => {
+      const toPay = document.getElementById('total').innerText.replace('₱ ', '');
+      const intVal = parseFloat(toPay);
+      const amount = amountInput.value;
+      const intVal2 = parseFloat(amount);
+      changeElement.innerText = '₱ ' + (intVal2 - intVal).toFixed(2);
+    };
 
-  // Check if the booking data exists
-  if (bookingData) {
-    // Get the values of initialPayment and passengerCount from the booking data
-    const initialPayment = bookingData.initialPayment;
-    const passengerCount = bookingData.passengerCount;
+    // Add event listener for the input event on the number input
+    amountInput.addEventListener('input', updateChangeElement);
 
-    // Display the values in the HTML elements
-    document.getElementById('initial').innerText = initialPayment;
-    document.getElementById('numOfPassengers').innerText = passengerCount;
-  }
-});
+  const travelersRef = ref(database, 'travelers');
+  const tricycleBookingsRef = ref(database, 'tricycleBookings');
+  const transactionRecordsRef = ref(database, 'transactionRecords'); // New reference
+
+  let travelersData;
+  let tricycleBookingsData;
+
+  onValue(travelersRef, (snapshot) => {
+    travelersData = snapshot.val();
+    console.log("Travelers data:", travelersData);
+  });
+
+  onValue(tricycleBookingsRef, (snapshot) => {
+    tricycleBookingsData = snapshot.val();
+  });
+
+  ctaBtn.addEventListener('click', () => {
+    const totalAmount = parseFloat(document.getElementById('total').innerText.replace('₱ ', ''));
+    const enteredAmount = parseFloat(amountInput.value);
+
+    if (enteredAmount >= totalAmount) {
+      loadingOverlay.style.display = 'flex';
+      const latestBookingKey = Object.keys(tricycleBookingsData)[0];
+      const tricycleData = tricycleBookingsData[latestBookingKey];
+
+      const travelerKeys = Object.keys(travelersData);
+      const travelersArray = [];
+
+      travelerKeys.forEach((key) => {
+        const traveler = travelersData[key];
+        travelersArray.push({
+          contact: traveler.contact,
+          email: traveler.email,
+          gender: traveler.gender,
+          name: traveler.name,
+        });
+      });
 
 
 
+      const newRecordRef = push(transactionRecordsRef); // Use push to generate a unique key
+      const newRecordKey = newRecordRef.key;
+
+      set(newRecordRef, {
+
+        amountPaid: enteredAmount,
+        initialPayment: parseFloat(document.getElementById('initial').innerText.replace('₱ ', '')),
+        totalAmount: totalAmount,
+        paymentMethod: document.getElementById('result2').innerText,
+        change: parseFloat(document.getElementById('change').innerText.replace('₱ ', '')),
+        tricycleData: tricycleData,
+        travelersData: travelersArray,
+      });
+
+      // Delete data from Realtime Database
+      remove(travelersRef);
+      remove(tricycleBookingsRef);
+      remove(ref(database, 'dateDepart'));
+      console.log("Booking Successful")
+      window.location.href = "thank.html";
+    } else {
+      showAlert('Insufficient amount!');
+    }
+  });
+    const gcash = document.getElementById('gcash');
+
+    gcash.addEventListener('click', () => {
+        document.getElementById('result2').innerText = "Pay via Gcash" 
+        hideCalendarPopup('date')
+     })
+  
+  const maya = document.getElementById('maya');
+
+    maya.addEventListener('click', () => {
+        document.getElementById('result2').innerText = "Pay via Maya" 
+        hideCalendarPopup('date')
+     })
 
   </script>
 

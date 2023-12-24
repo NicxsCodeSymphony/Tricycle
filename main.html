@@ -6,175 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>CTU Tricycle Booking</title>
   <link rel="stylesheet" href="/css/popup.css">
+  <link rel="stylesheet" type="text/css" href="css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
 </head>
 
-<style>
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
 
-  body {
-     font-family: Arial, sans-serif;
-     margin: 0;
-     padding: 0;
-     background-color: #f0f0f0;
-     color: #fff;
-    height: 100%;
-     background: #0a1511;
-     min-width: 100vw;
-     padding: 0 20px;
-  }
-
-  header{
-    height: 10vh;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  header i{
-    font-size: 1.2rem;
-    color: #fff;
-  }
-
-  header i:last-child{
-    text-align: right;
-  }
-
-  .section1{
-    border-bottom: 1px #3a4039 solid;
-    padding: 10px 0;
-    margin-bottom: 20px;
-  }
-
-  .section1 p{
-      color: #3a4039;
-  }
-
-  .stand{
-    font-size: 2rem;
-  }
-
-  .section2{
-    display: grid;
-    grid-template-columns: 2fr 2fr;
-    gap: 50px;
-  }
-
-  .section2 > div{
-    border-bottom: 1px #3a4039 solid;
-    padding-bottom: 10px;
-  }
-
-  .section2 p{
-    color: #515346;
-  }
-
-  .section2 h2{
-    margin:4px 0;
-    font-size: 1.8rem;
-  }
-
-  .section2 span{
-    color: #3a4039;
-    font-size: 0.7rem;
-  }
-
-  .section2 .right{
-    text-align: right;
-  }
-
-  .section3{
-    border: 1px #3a4039 solid;
-    margin-top: 20px;
-    height: 12vh;
-    border-radius: 20px;
-    width: 100%;
-  }
-
-  .container{
-    display:flex;
-    height: 100%;
-    width: 100%;
-  }
-
-  .container > div{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-  }
-
-  .container .left{
-    border-right: #3a4039 solid 1px;
-    padding: 5px 15px;
-  }
-
-  .container .left:last-child{
-    border-right: none;
-  }
-
-  .container .right p{
-    font-size: 1rem;
-  }
-
-  .container p{
-    margin-bottom: 5px;
-    color: #3a4039;
-    font-size: 0.8rem;
-  }
-
-  .container h4{
-    font-size: 1.4rem;
-  }
-
-  h1,h2,h3,h4{
-    font-weight: 100;
-  }
-
-  .number-container{
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .number{
-    font-size: 1.3rem;
-  }
-
-  .button{
-    background: transparent;
-    border-radius: 50%;
-    border: 1px #3a4039 solid;
-    width: 25px;
-    color: #fff;
-    height: 25px;
-    text-align: center;
-  }
-
-  input[type="button"]{
-    width: 100%;
-    height: 8vh;
-    background: #ff7b54;
-    margin-top: 60px;
-    border: none;
-    outline: none;
-    border-radius: 20px;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 900;
-  }
-</style>
 
 <body>
 
   <header>
     <i class="fa-solid fa-arrow-left logout" onclick="logout()"></i>
-    <i class="fa-solid fa-bars"></i>
+    <p style="font-size: 14px; margin-top: 1.1px;">Tricycle Booking</p>
+    <i></i>
   </header>
 
   <div class="section1">
@@ -244,8 +88,8 @@
  <div id="datePopup" class="popup">
     <button onclick="hideCalendarPopup('date')">Close</button>
     <div class="wrapper">
-      <p>Choose a Date</p>
-      <input type="date" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 200px; height: 40px; font-size: 16px;" id="dateInput2" oninput="updateDateResult()">
+      <p style="text-align: center;">Choose a Date</p>
+      <input type="date" style="position: absolute; left: 40%; top: 60%; transform: translate(-50%, -50%); width: 200px; height: 40px; font-size: 16px;" id="dateInput2" oninput="updateDateResult()">
     </div>
   </div>
 
@@ -253,9 +97,9 @@
 <div id="departurePopup" class="popup">
   <button onclick="hideCalendarPopup('departure')">Close</button>
   <div class="wrapper">
-    <p>Choose a Time for Departure</p>
+    <p style="text-align: center;">Choose a Time for Departure</p>
     <!-- Update styles for larger and centered input -->
-    <input type="time" name="" value="" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 200px; height: 40px; font-size: 16px;" id="dateInput" onclick="showTimePopup('departure')" oninput="convertDateFormat()">
+    <input type="time" name="" value="" style="position: absolute; left: 50%; top:60%; transform: translate(-50%, -50%); width: 200px; height: 40px; font-size: 16px;" id="dateInput" onclick="showTimePopup('departure')" oninput="convertDateFormat()">
   </div>
 </div>
 
@@ -263,9 +107,9 @@
 <div id="returnPopup" class="popup">
   <button onclick="hideCalendarPopup('return')">Close</button>
   <div class="wrapper">
-    <p>Choose a Time for Return</p>
+    <p style="text-align: center;">Choose a Time for Return</p>
     <!-- Update styles for larger and centered input -->
-    <input type="time" name="" value="" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 200px; height: 40px; font-size: 16px;" id="dateInput1" onclick="showTimePopup('return')" oninput="convertDateFormat1()">
+    <input type="time" name="" value="" style="position: absolute; left: 50%; top: 60%; transform: translate(-50%, -50%); width: 200px; height: 40px; font-size: 16px;" id="dateInput1" onclick="showTimePopup('return')" oninput="convertDateFormat1()">
   </div>
 </div>
 
@@ -275,8 +119,8 @@
 
     <div class="to-wrappers">
     <p>From</p>
-    <input type="text" name="" value="Bogo City">
-    <h5>Select From</h5>
+    <input type="text" name="" value="Daanbantayan">
+    <h5>Select To</h5>
 
     <div class="scroll-sec">
 
@@ -363,6 +207,14 @@
 
     </div>
   </div>
+
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <div class="custom-alert" id="customAlert"></div>
+   <div class="overlay"></div>
+
 
   <div class="btnCon">
   <input type="button" name=""id="ctaBtn" value="Find your Tricycle">
@@ -498,16 +350,31 @@ window.showTimePopup = function (type) {
     const passengerCount = adultCountElement ? adultCountElement.textContent : null;
     const dateDepart = dateElement ? dateElement.textContent : null;
 
+   function showAlert(message) {
+  const customAlert = document.getElementById('customAlert');
+  const overlay = document.querySelector('.overlay');
+
+  customAlert.innerText = message;
+  customAlert.style.display = 'block';
+
+  overlay.classList.add('show-overlay'); // Show the overlay
+
+  setTimeout(() => {
+    customAlert.style.display = 'none';
+    overlay.classList.remove('show-overlay'); // Hide the overlay
+  }, 2000);
+}
+
     // Check if any of the required elements have the value "Click Here"
     if (toPlace === "Click Here" || pickupTime === "Click Here" || departureTime === "Click Here" || passengerCount === "Click Here") {
-      alert('Please choose values for all sections before finding your tricycle.');
+      showAlert('Please choose values for all sections before finding your tricycle.');
     } else {
       // Check if pickup time is later than departure time
       const pickupTimestamp = Date.parse(`2023-01-01 ${pickupTime}`);
       const departureTimestamp = Date.parse(`2023-01-01 ${departureTime}`);
 
       if (pickupTimestamp >= departureTimestamp) {
-        alert('Pickup time should be earlier than departure time.');
+        showAlert('Pickup time should be earlier than departure time.');
       } else {
         // Wait for the user to choose a place before writing to the database
         if (initialPayment !== undefined) {
@@ -528,16 +395,18 @@ window.showTimePopup = function (type) {
           localStorage.setItem('toPlace', toPlace);
     localStorage.setItem('pickupTime', pickupTime);
     localStorage.setItem('departureTime', departureTime);
+    localStorage.setItem('passengerCount', passengerCount);
     localStorage.setItem('initialPayment', initialPayment);
     localStorage.setItem('dateDepart', dateDepart);
 
+        loadingOverlay.style.display = 'flex';
           // Reset the initialPayment after storing data
           initialPayment = undefined;
 
         // Redirect to the confirmation page with the newEntryKey as a parameter
         window.location.href = `tricycle.html?toPlace=${toPlace}&pickupTime=${pickupTime}&departureTime=${departureTime}`;
         } else {
-          alert('Please choose a place before finding your tricycle.');
+          showAlert('Please choose a place before finding your tricycle.');
         }
       }
     }

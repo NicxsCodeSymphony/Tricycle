@@ -17,7 +17,7 @@ function showCalendar(type) {
     
     function showTo(type) {
     const popup = document.getElementById(type + 'Popup');
-    popup.style.height = '60%';
+    popup.style.height = '100%';
     popup.style.width = '100%';
     popup.style.bottom = '0';
     }
